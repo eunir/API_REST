@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controllers;
 use App\Models\Usuarios;
 use App\Http\Requests\usuarioRequest;
+use Illuminate\Support\Facades\DB;
 
 class UsuariosApiControlLer extends Controller
 {
@@ -33,9 +34,21 @@ class UsuariosApiControlLer extends Controller
     }
 
     
-    public function show($id)
+    public function login(Request $request)
     {
-        //
+        $usuario = $request->all();
+        $data = DB::table('usuarios')
+        ->select('id','nome_usuario')
+        ->where('senha', '=', $usuario['senha'])
+        ->get();
+        if($data == "[]"){
+            $status=0;
+            return response()->json($status);
+        }
+        else{
+            return response()->json($data);
+        }
+        
     }
 
     

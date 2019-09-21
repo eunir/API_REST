@@ -10,7 +10,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::name('api.')->group(function(){
 
-    
+    //Rotas de login
+    Route::prefix('login')->group(function(){
+
+        Route::post('/','UsuariosApiController@login');
+        
+    });
 
     //Rotas do grupo usuários
     Route::prefix('usuarios')->group(function(){
@@ -18,6 +23,7 @@ Route::name('api.')->group(function(){
         Route::get('/','UsuariosApiController@index')->name('allUsuarios');
         //Route::get('/{id}','usuariosController@getUsuarios')->name('getUsuarios');
         Route::post('/','UsuariosApiController@cadastrar')->name('insertUsuarios');
+        
         //Route::put('/{id}','usuariosController@updateUsuarios')->name('updateUsuarios');
         //Route::delete('/{id}','usuariosController@deleteUsuarios')->name('deleteUsuarios');
         

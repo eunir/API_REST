@@ -11,6 +11,20 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
-    //return view('welcome');
+    return view('login');
 });
+//Route::view('painel','painel');
+Route::get('/painel', function () {
+    return view('Painel');
+});
+Route::get('/chamados', function () {
+    return view('chamados');
+});
+
+Route::get('cadastro', 'FuncionariosWebController@redireciona');
+Route::post('login','FuncionariosWebController@login');
+Route::post('cadastrar', 'FuncionariosWebController@cadastrar');
+

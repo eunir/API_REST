@@ -47,7 +47,8 @@
         </div>
         <div class="col-lg-12 d-flex justify-content-center align-items-center p-3">
           <form class="form-inline mb-0" action="listar" method="POST">
-          {{ csrf_field() }}
+          <?php echo e(csrf_field()); ?>
+
             <div class="input-group">
               <select type="text" name="status" class="form-control" class="col-lg-3">
                 <option value="1" class="form-control">Aberto</option>
@@ -71,31 +72,32 @@
       </div>
     </div>
   </div>
-  @foreach ( $chamado as $chamado )
+  <?php $__currentLoopData = $chamado; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chamado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
   <div class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="card text-center" >
-            <div class="card-header"> Status: {{ $chamado->status_chamado }} </div>
+            <div class="card-header"> Status: <?php echo e($chamado->status_chamado); ?> </div>
             <div class="card-body">
-              <h5 class="card-title">Tipo: {{ $chamado->tipo_chamado }} </h5>
-              <p class="card-text">{{ $chamado->descricao }}</p>
+              <h5 class="card-title">Tipo: <?php echo e($chamado->tipo_chamado); ?> </h5>
+              <p class="card-text"><?php echo e($chamado->descricao); ?></p>
 
               <form action="detalhar" method="POST">
-                {{ csrf_field() }}
-                <input type="hidden" value="{{ $chamado->id }}">
+                <?php echo e(csrf_field()); ?>
+
+                <input type="hidden" value="<?php echo e($chamado->id); ?>">
                 <button type="submit" class="btn btn-primary">Detalhar</button>
               </form>
              
             </div>
-            <div class="card-footer text-muted">Data de abertura: {{ $chamado->data_abertura }}</div>
+            <div class="card-footer text-muted">Data de abertura: <?php echo e($chamado->data_abertura); ?></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  @endforeach
+  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
   <div class="py-3">
     <div class="container">
       <div class="row">
@@ -111,4 +113,4 @@
   
 </body>
 
-</html>
+</html><?php /**PATH C:\xampp\htdocs\API_REST\resources\views/chamados.blade.php ENDPATH**/ ?>

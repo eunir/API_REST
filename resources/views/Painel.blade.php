@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-md-2 p-4"> <img class="img-fluid d-block mb-3 mx-auto rounded-circle" src="https://static.pingendo.com/img-placeholder-1.svg" alt="Card image cap" width="200">
+        <div class="col-lg-4 col-md-2 p-4" ><a href="chamados"><img class="img-fluid d-block mb-3 mx-auto rounded-circle" src="https://static.pingendo.com/img-placeholder-1.svg" alt="Card image cap" width="200" ></a>
           <h4> <b>Chamados</b> </h4>
           <p class="mb-0"></p>
         </div>

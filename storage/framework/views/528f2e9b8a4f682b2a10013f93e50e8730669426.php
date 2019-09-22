@@ -16,9 +16,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar19"> <a class="navbar-brand d-none d-md-block" href="#">
           <i class="fa d-inline fa-lg fa-stop-circle-o"></i>
-          <b>Chamados</b>
+          <b>Detalhes</b>
         </a>
         <ul class="navbar-nav mx-auto">
+          <li class="nav-item"> <a class="nav-link" href="#">Chamados</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Enquetes</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Documentos</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Informações</a></li>
@@ -38,64 +39,38 @@
       </div>
     </div>
   </nav>
-  <div class="py-5" >
+  <div class="py-5 bg-light">
     <div class="container">
       <div class="row">
-        <div class="ml-auto col-lg-12 text-center text-lg-center">
-          <h1>Lista de Chamados</h1>
-          <p class="mb-0">Os chamados são listados pelo status em aberto, selecione um STATUS ou TIPO para visualizar os demais chamados.</p>
+        <div class="mx-auto text-center col-lg-6">
+          <h1 class="mb-3">I sink under</h1>
+          <p class="lead mb-4">I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence.</p>
         </div>
-        <div class="col-lg-12 d-flex justify-content-center align-items-center p-3">
-          <form class="form-inline mb-0" action="listar" method="POST">
-          {{ csrf_field() }}
-            <div class="input-group">
-              <select type="text" name="status" class="form-control" class="col-lg-3">
-                <option value="1" class="form-control">Aberto</option>
-                <option value="2" class="form-control">Em análise</option>
-                <option value="3" class="form-control">Em andamento</option>
-                <option value="4" class="form-control">Finalizado</option>
-              </select>
-              <div class="col-lg-1"></div>
-              <div class="input-group"> 
-              <select type="text" name="tipo" class="form-control" class="col-lg-3">
-                <option value="" class="form-control">Denúncia</option>
-                <option value="" class="form-control">Elogio</option>
-                <option value="" class="form-control">Reclamação</option>
-                <option value="" class="form-control">Sugestão</option>
-              </select>
-            </div>
-            <div class="col-lg-1"></div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe src="https://player.vimeo.com/video/239823487?title=0&amp;byline=0&amp;portrait=0" allowfullscreen="" class="embed-responsive-item"></iframe>
+          </div>
+        </div>
+        <div class="px-4 order-1 order-md-2 col-lg-6">
+          <h2 class="mb-4">Alterar chamado</h2>
+          <form>
+            <div class="form-group"> <input type="text" class="form-control" id="form44" placeholder="Name"> </div>
+            <div class="form-group"> <input type="email" class="form-control" id="form45" placeholder="Email"> </div>
+            <div class="form-group"> <textarea class="form-control" id="form46" rows="3" placeholder="Your message"></textarea> </div> <button type="submit" class="btn btn-primary">Send</button>
           </form>
         </div>
       </div>
     </div>
   </div>
-  @foreach ( $chamado as $chamado )
-  <div class="py-5">
+  <div class="py-5" >
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div class="card text-center" >
-            <div class="card-header"> Status: {{ $chamado->status_chamado }} </div>
-            <div class="card-body">
-              <h5 class="card-title">Tipo: {{ $chamado->tipo_chamado }} </h5>
-              <p class="card-text">{{ $chamado->descricao }}</p>
-
-              <form action="detalhar" method="POST">
-                {{ csrf_field() }}
-                <input type="hidden" value="{{ $chamado->id }}">
-                <button type="submit" class="btn btn-primary">Detalhar</button>
-              </form>
-             
-            </div>
-            <div class="card-footer text-muted">Data de abertura: {{ $chamado->data_abertura }}</div>
-          </div>
-        </div>
+        <div class="col-md-12"><iframe width="100%" height="400" src="https://maps.google.com/maps?q=New%20York&amp;z=14&amp;output=embed" scrolling="no" frameborder="0"></iframe></div>
       </div>
     </div>
   </div>
-  @endforeach
   <div class="py-3">
     <div class="container">
       <div class="row">
@@ -111,4 +86,4 @@
   
 </body>
 
-</html>
+</html><?php /**PATH C:\xampp\htdocs\API_REST\resources\views/detalhe.blade.php ENDPATH**/ ?>

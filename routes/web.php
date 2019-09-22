@@ -23,8 +23,15 @@ Route::get('/painel', function () {
 Route::get('/chamados', function () {
     return view('chamados');
 });
+Route::get('/detalhes', function () {
+    return view('detalhe');
+});
 
 Route::get('cadastro', 'FuncionariosWebController@redireciona');
 Route::post('login','FuncionariosWebController@login');
 Route::post('cadastrar', 'FuncionariosWebController@cadastrar');
+
+Route::get('chamados','ChamadosWebController@redireciona');
+Route::post('listar','ChamadosWebController@listarPorStatus');
+Route::post('detalhar','ChamadosWebController@detalharChamado');
 

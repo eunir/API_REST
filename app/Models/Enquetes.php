@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Enquetes extends Model
 {
     protected $fillable = [
-        
+        '_token',
         'descricao_enquete',
         'comentario',
         'data_abertura',

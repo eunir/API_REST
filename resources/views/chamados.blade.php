@@ -84,7 +84,7 @@
 
               <form action="detalhar" method="POST">
                 {{ csrf_field() }}
-                <input type="hidden" value="{{ $chamado->id }}">
+                <input type="hidden" name="id" value="{{ $chamado->id }}">
                 <button type="submit" class="btn btn-primary">Detalhar</button>
               </form>
              

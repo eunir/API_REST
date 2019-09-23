@@ -34,4 +34,10 @@ Route::post('cadastrar', 'FuncionariosWebController@cadastrar');
 Route::get('chamados','ChamadosWebController@redireciona');
 Route::post('listar','ChamadosWebController@listarPorStatus');
 Route::post('detalhar','ChamadosWebController@detalharChamado');
+Route::post('alterar','ChamadosWebController@alterarChamado');
+
+Route::get('enquetes','EnquetesWebController@index');
+Route::post('novaenquete','EnquetesWebController@criarEnquete');
+Route::get('votacao','EnquetesWebController@votacao');
+
 

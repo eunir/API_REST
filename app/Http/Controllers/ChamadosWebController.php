@@ -69,6 +69,35 @@ class ChamadosWebController extends Controller
 
      //detaha o chamado quando acionado a opção detalhar
      public function detalharChamado(Request $request){
-        return ('Detalhes');
+         $id = $request['id'];
+         $chamado = DB::table('chamados')
+            ->where('id', '=', $id)
+            ->get();
+
+        $funcionario = DB::table('funcionarios')
+            ->where('ativo', '=', '1')
+            ->get();
+        return view('detalhe',compact('chamado','funcionario'));
+
+        //return ('Detalhes');
+     }
+
+     //Realiza a alteração dos chamados
+     public function alterarChamado(Request $request){
+
+         $status = $request['status'];
+         $responsavel = $request['responsavel'];
+         $comentario = $request['comentario'];
+         $id = $request['id'];
+
+         DB::table('chamados')
+            ->where('id','=',$id)
+            ->update([
+             'status_chamado'=> $status,
+             'responsavel'=> $responsavel,
+             'resposta'=> $comentario
+             ]);
+
+             return redirect()->action('ChamadosWebController@redireciona');
      }
 }

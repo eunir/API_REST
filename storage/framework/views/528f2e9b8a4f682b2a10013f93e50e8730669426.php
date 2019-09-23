@@ -19,8 +19,8 @@
           <b>Detalhes</b>
         </a>
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item"> <a class="nav-link" href="#">Chamados</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Enquetes</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="chamados">Chamados</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="enquetes">Enquetes</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Documentos</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Informações</a></li>
           <li class="nav-item"> <a class="nav-link" href="#">Usuários</a></li>
@@ -39,38 +39,82 @@
       </div>
     </div>
   </nav>
+  <?php $__currentLoopData = $chamado; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chamado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
   <div class="py-5 bg-light">
     <div class="container">
       <div class="row">
+        <div class="mx-auto text-center col-lg-4">
+          <h4 class="mb-3">Tipo: <?php echo e($chamado->tipo_chamado); ?></h4>
+        </div>
+        <div class="mx-auto text-center col-lg-4">
+          <h4 class="mb-3">Status: <?php echo e($chamado->status_chamado); ?></h4>
+        </div>
+        <div class="mx-auto text-center col-lg-4">
+          <h4 class="mb-3">Responsável: <?php echo e($chamado->responsavel); ?></h4>
+        </div>
+      </div>
+      <div class="row">
         <div class="mx-auto text-center col-lg-6">
-          <h1 class="mb-3">I sink under</h1>
-          <p class="lead mb-4">I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence.</p>
+          <p class="lead mb-4"><?php echo e($chamado->descricao); ?></p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe src="https://player.vimeo.com/video/239823487?title=0&amp;byline=0&amp;portrait=0" allowfullscreen="" class="embed-responsive-item"></iframe>
+            <?php 
+              $extension = pathinfo($chamado->imagem_video)['extension'];
+            ?>
+            <?php if($extension=="jpg" || $extension == "jpeg" || $extension == "png"): ?>
+             <img src="<?php echo e('../public/storage/imagens/'.$chamado->imagem_video); ?>" class="embed-responsive-item" ></img>
+            <?php else: ?>
+             <video src="<?php echo e('../public/storage/imagens/'.$chamado->imagem_video); ?>" class="embed-responsive-item" controls="controls"> Your browser does not support HTML5 video. </video>
+            <?php endif; ?>
           </div>
         </div>
         <div class="px-4 order-1 order-md-2 col-lg-6">
-          <h2 class="mb-4">Alterar chamado</h2>
-          <form>
-            <div class="form-group"> <input type="text" class="form-control" id="form44" placeholder="Name"> </div>
-            <div class="form-group"> <input type="email" class="form-control" id="form45" placeholder="Email"> </div>
-            <div class="form-group"> <textarea class="form-control" id="form46" rows="3" placeholder="Your message"></textarea> </div> <button type="submit" class="btn btn-primary">Send</button>
+       
+          <form action="alterar" method="POST">
+            <?php echo e(csrf_field()); ?>
+
+            <div class="form-group">
+               <label for="form16">Status</label>
+               <select type="text" name="status" class="form-control" class="col-lg-3">
+                <option value="Aberto" class="form-control">Aberto</option>
+                <option value="Em análise" class="form-control">Em análise</option>
+                <option value="Em andamento" class="form-control">Em andamento</option>
+                <option value="Finalizado" class="form-control">Finalizado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="form16">Responsável</label>
+              <select type="text" name="responsavel" class="form-control" class="col-lg-3">
+              <?php $__currentLoopData = $funcionario; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $funcionario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($funcionario->nome_funcionario); ?>" class="form-control"><?php echo e($funcionario->nome_funcionario); ?></option>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              </select>
+            </div>
+            <div class="form-group"> 
+              <textarea class="form-control" name="comentario" id="form46" rows="3" placeholder="Adicionar comentário"></textarea> 
+            </div> 
+            <input type="hidden" name="id" value="<?php echo e($chamado->id); ?>">
+            <button type="submit" class="btn btn-primary">Salvar alterações</button>
           </form>
+
         </div>
       </div>
     </div>
   </div>
-  <div class="py-5" >
+  <div class="py-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-12"><iframe width="100%" height="400" src="https://maps.google.com/maps?q=New%20York&amp;z=14&amp;output=embed" scrolling="no" frameborder="0"></iframe></div>
+        <div class="col-md-12">
+          <iframe width="100%" height="400" src="https://maps.google.com/maps?q=New%20York&amp;z=14&amp;output=embed" scrolling="no" frameborder="0">
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
+  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
   <div class="py-3">
     <div class="container">
       <div class="row">
@@ -83,7 +127,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" style=""></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous" style=""></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
+
 </body>
 
 </html><?php /**PATH C:\xampp\htdocs\API_REST\resources\views/detalhe.blade.php ENDPATH**/ ?>

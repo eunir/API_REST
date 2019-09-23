@@ -86,7 +86,7 @@
               <form action="detalhar" method="POST">
                 <?php echo e(csrf_field()); ?>
 
-                <input type="hidden" value="<?php echo e($chamado->id); ?>">
+                <input type="hidden" name="id" value="<?php echo e($chamado->id); ?>">
                 <button type="submit" class="btn btn-primary">Detalhar</button>
               </form>
              

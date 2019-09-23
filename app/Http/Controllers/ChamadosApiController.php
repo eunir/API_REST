@@ -8,9 +8,7 @@ use App\Models\Chamados;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-
-
-
+use Symfony\Component\HttpFoundation\File\File;
 
 class ChamadosApiController extends Controller
 {
@@ -33,15 +31,14 @@ class ChamadosApiController extends Controller
         //$this->validate($request, $this->chamado->rules());
         $dataForm = $request->all();
         if($request->hasFile('imagem_video') && $request->file('imagem_video')->isValid()){
+            $file = $dataForm['imagem_video'];
             $extensao = $request->imagem_video->extension();
             $name = uniqid(date('His'));
             $nomeArquivo = "{$name}.{$extensao}";
-            $upload = Image::make($dataForm['imagem_video'])->resize(177,236)->save(storage_path("app/public/imagens/$nomeArquivo",70));
-            if(!$upload){
-                return response()->json(['error','Falha no upload'],500);
-            }else{
-                $dataForm['imagem_video'] = $nomeArquivo;
-            }
+            $path = storage_path("app/public/imagens/");
+            $file->move($path, $nomeArquivo);
+            $dataForm['imagem_video'] = $nomeArquivo;
+            
         }
         $data = $this->chamado->insert($dataForm);
         return response()->json($data);
